@@ -1,0 +1,109 @@
+﻿
+@model PagedList.PagedList<Web_Skate.Models.DonHang>
+@using Web_Skate.Models;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "DonHang";
+    Layout = "~/Views/Shared/_LayoutNhanVien.cshtml";
+}
+<style>
+    .detailsDH:hover {
+        background-color: greenyellow;
+    }
+</style>
+<h2>Đơn Hàng</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Khách Hàng
+        </th>
+
+        <th>
+            Phương Thức Thanh Toán
+        </th>
+        <th>
+            Ghi Chú
+        </th>
+        <th>
+            Trạng Thái Đơn Hàng
+        </th>
+        <th>
+            Tên Người Nhận
+        </th>
+        <th>
+            Địa Chỉ Người Nhận
+        </th>
+        <th>
+            Số Điện Thoại Người Nhận
+        </th>
+        <th>
+            Ngày Đặt
+        </th>
+        <th>
+            Ngày Giao
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID_KH)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.PhuongThucThanhToan.PhuongThuc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GhiChu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrangThaiDonHang.TrangThaiDH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenNguoiNhan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChiNguoiNhan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDT_NguoiNhan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayDat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayGiao)
+            </td>
+            <td>
+
+                <button class="detailsDH"> @Html.ActionLink("UpDate", "EditDH", new { id = item.ID_DonHang }) </button> |
+                <button class="detailsDH"> @Html.ActionLink("Detail", "CTDonHang", new { id = item.ID_DonHang }) </button>
+
+            </td>
+
+        </tr>
+    }
+
+</table>
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount;
+
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("DonHang", new { page = page }))
+
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+        text-align: center;
+        width: 50px;
+        border: solid;
+    }
+</style>

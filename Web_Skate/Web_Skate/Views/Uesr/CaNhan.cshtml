@@ -1,0 +1,73 @@
+﻿@model Web_Skate.Models.KhachHang
+
+@{
+    ViewBag.Title = "CaNhan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/order.css">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<header style="background-color:#fff;margin-top:70px;">
+    <a></a>
+</header>
+
+
+<div>
+    <h1 style="text-align:center; margin-bottom: 20px;">Thông Tin Cá Nhân</h1>
+    <table class="table table-hover  ">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th> </th>
+            </tr>
+        </thead>
+       
+        
+
+            <tr style="height:40px">
+            <td class="col-sm-8 col-md-6"><h3 style="font-weight:bold">Họ và Tên:</h3></td>
+            <td class="col-sm-8 col-md-6"><h4>  @Html.DisplayFor(model => model.HoTen_KH)</h4></td>
+
+             </tr>
+
+        <tr style="height:40px">
+            <td class="col-sm-8 col-md-6"><h3 style="font-weight:bold">Số Điện Thoại :</h3></td>
+            <td class="col-sm-8 col-md-6"><h4>  @Html.DisplayFor(model => model.SDT_KH)</h4></td>
+
+        </tr>
+        <tr style="height:40px">
+            <td class="col-sm-8 col-md-6"><h3 style="font-weight:bold">Địa Chỉ :</h3></td>
+            <td class="col-sm-8 col-md-6"><h4>  @Html.DisplayFor(model => model.DiaChi_KH)</h4></td>
+
+        </tr>
+
+
+        <tr style="height:40px">
+            <td class="col-sm-8 col-md-6"><h3 style="font-weight:bold">Account :</h3></td>
+            <td class="col-sm-8 col-md-6"><h4>  @Html.DisplayFor(model => model.Account_KH)</h4></td>
+
+        </tr>
+        <tr style="height:40px">
+            <td class="col-sm-8 col-md-6"><h3 style="font-weight:bold">PassWord:</h3></td>
+            <td class="col-sm-8 col-md-6"><h4>  @Html.DisplayFor(model => model.Password_KH)</h4></td>
+
+        </tr>
+
+
+
+        
+    </table>
+</div>
+<p  style="text-align:center; margin-bottom: 20px; font-size:20px;">
+    <button class="detailsDH"> @Html.ActionLink("Edit", "Edit", new { id = Model.ID_KH }) </button> |
+    <button class="detailsDH" > @Html.ActionLink("Back To List", "Index","Home") </button>
+</p>
+<style>
+    .detailsDH:hover {
+        background-color: greenyellow;
+    }
+</style>

@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login in to website</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" sizes="180x180" href="~/asset/favicon/android-chrome-192x192.png">
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Views/Home/Index.cshtml">
+</head>
+<body>
+    <header style="background-color:#fff">
+    </header>
+
+    <div class="container">
+        <div class="login-form">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <h1>LOGIN IN TO WEBSITE</h1>
+                <h4 style="color:red; text-align:center;">@ViewBag.Thongbao</h4>
+                <div class="input-box">
+                    <i></i>
+                    @Html.TextBox("Account_KH")
+                    @ViewData["Lôi1"]
+
+
+                </div>
+                <div class="input-box">
+                    <i></i>
+                    @Html.Password("Password_KH")
+                    @ViewData["Lôi2"]
+
+                </div>
+                
+                <p class="account" > <a style="color:blue;" class="new-account2" href="/Uesr/CreateAccount">Create Account?</a></p>
+                <div class="btn-box">
+                    
+                    <button type="submit" class="submit">
+                        Login
+                    </button>
+                    <button class="out"> <a class="text-out" href="/Home">Cancel</a></button>
+                </div>
+            }
+             
+        </div>
+    </div>
+
+
+
+    <footer style="background-color:#333;margin-top:44px">
+    </footer>
+</body>
+
+</html>
+

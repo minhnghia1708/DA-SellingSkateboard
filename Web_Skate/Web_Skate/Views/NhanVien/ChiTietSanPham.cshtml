@@ -1,0 +1,82 @@
+﻿@model Web_Skate.Models.SanPham
+
+@{
+    ViewBag.Title = "ChiTietSanPham";
+    Layout = "~/Views/Shared/_LayoutNhanVien.cshtml";
+}
+<style>
+    #tensp{
+        font-weight:bold;
+        font-size:20px;
+        
+        
+    }
+</style>
+
+<h2>Chi Tiết Sản Phẩm</h2>
+
+<div>
+    <h4>Sản Phảm</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Sản Phẩm:
+
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenSanPham, new { id = "tensp" })
+        </dd>
+        <dt>
+            Giá Sản Phẩm :
+
+        </dt>
+        <dd>
+            @String.Format("{0:0,0}", Model.Gia_SanPham) VNĐ
+        </dd>
+        <dt>
+           Image :
+
+        </dt>
+        <dd>
+
+            <img src="~/asset/shop/@Model.Image" width="150px" style="border-radius:15px" />
+        </dd>
+
+        <dt>
+            Chi Tiết Sản Phẩm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChiTietSanPham)
+        </dd>
+
+        <dt>
+            Số Lượng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
+        <dt>
+            Loại Sản Phẩm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_Loai)
+        </dd>
+
+        <dt>
+            Thương Hiệu
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_ThuongHieu)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_SanPham }) |
+    @Html.ActionLink("Back to List", "SanPham")
+</p>

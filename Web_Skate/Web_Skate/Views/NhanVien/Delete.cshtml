@@ -1,0 +1,84 @@
+﻿@model Web_Skate.Models.SanPham
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutNhanVien.cshtml";
+}
+<style>
+    #delete:hover{
+        background-color:lawngreen;
+    }
+</style>
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Sản Phẩm:
+
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenSanPham, new { id = "tensp" })
+        </dd>
+        <dt>
+            Giá Sản Phẩm :
+
+        </dt>
+        <dd>
+            @String.Format("{0:0,0}", Model.Gia_SanPham) VNĐ
+        </dd>
+        <dt>
+            Image :
+
+        </dt>
+        <dd>
+
+            <img src="~/asset/shop/@Model.Image" width="150px" style="border-radius:15px" />
+        </dd>
+
+        <dt>
+            Chi Tiết Sản Phẩm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChiTietSanPham)
+        </dd>
+
+        <dt>
+            Số Lượng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
+        <dt>
+            Loại Sản Phẩm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_Loai)
+        </dd>
+
+        <dt>
+            Thương Hiệu
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_ThuongHieu)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" id="delete"/> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

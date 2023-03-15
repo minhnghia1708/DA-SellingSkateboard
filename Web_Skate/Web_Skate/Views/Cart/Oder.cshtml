@@ -1,0 +1,172 @@
+﻿@using Web_Skate.Models
+@model List<Cart>
+
+@{
+    ViewBag.Title = "Oder";
+
+}
+
+<link rel="stylesheet" href="~/Content/order.css">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<header style="background-color:#fff;margin-top:70px;">
+    <a></a>
+</header>
+
+<body>
+    <h1 style="text-align:center; margin-bottom: 20px;">Thông Tin ORDER</h1>
+    <div class="tthang-hoa">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th class="text-center">Price</th>
+                                <th class="text-center">Total</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+
+
+                                    <td class="col-sm-8 col-md-6">
+                                        <div class="media">
+                                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="~/asset/shop/@item.Image" style="width: 72px; height: 72px;"> </a>
+
+
+                                            <div class="media-body">
+                                                <h4 class="media-heading" style="font-weight:bold">@item.TenSanPham</h4>
+                                                <h5 class="media-heading"> <a href="@Url.Action("Details", "Shop", new { id = item.ID_SanPham })">Details</a></h5>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                    @using (Html.BeginForm("UpdateCart", "Cart", new { @IDSP = item.ID_SanPham }))
+                                    {
+                                        <td class="col-sm-1 col-md-1" style="text-align: center">
+                                            <input type="number" name="quantity" min="1" max="99" value="@item.SoLuong">
+                                        </td>
+                                        <td class="col-sm-1 col-md-1 text-center"><strong>@String.Format("{0:0,0}", item.Gia_SanPham)</strong></td>
+                                        <td class="col-sm-1 col-md-1 text-center"><strong>@String.Format("{0:0,0}", item.TongTien)</strong></td>
+                                        <td class="col-sm-1 col-md-1">
+                                        </td>
+                                    }
+
+                                </tr>
+                            }
+
+
+                            <tr>
+                                <td>   </td>
+                                <td>   </td>
+                                <td>   </td>
+                                <td><h5>Total Amount</h5></td>
+                                <td class="text-right" colspan="4"><h5><strong> @ViewBag.TongSoLuong</strong></h5></td>
+                            </tr>
+
+                            <tr>
+                                <td>   </td>
+                                <td>   </td>
+                                <td>   </td>
+                                <td><h3>Total</h3></td>
+                                <td class="text-right" colspan="5"><h3><strong> @String.Format("{0:0,0}", ViewBag.TongTien) VNĐ</strong></h3></td>
+                            </tr>
+                            <tr>
+                                <td>   </td>
+                                <td>   </td>
+                                <td>   </td>
+                                <td>
+                                    <button type="button" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-shopping-cart"></span> <a href=@Url.Action("Cart", "Cart") style="color:#000;">Back to Cart</a>
+                                    </button>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="order">
+
+        @{
+            KhachHang kh = (KhachHang)Session["Account_KH"];
+            DonHang dh = new DonHang();
+            
+
+        }
+        <table class="table table-hover  ">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th> </th>
+                </tr>
+            </thead>
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                <tr style="height:40px">
+                    <td class="col-sm-8 col-md-6"><h4 style="font-weight:bold">Họ Tên Khách Hàng:</h4></td>
+                    <td class="col-sm-8 col-md-6"><h5> @kh.HoTen_KH</h5></td>
+
+                </tr>
+                <tr style="height:40px">
+                    <td class="col-sm-8 col-md-6"><h4 style="font-weight:bold">Địa Chỉ Khách Hàng:</h4></td>
+                    <td class="col-sm-8 col-md-6"><h5> @kh.DiaChi_KH</h5></td>
+                </tr>
+                <tr style="height:40px">
+                    <td class="col-sm-8 col-md-6"><h4 style="font-weight:bold">Ghi Chú:</h4></td>
+                    <td class="col-sm-8 col-md-6"><h5> <input type="text" name="GhiChu" /></h5></td>
+                </tr>
+                <tr style="height:40px">
+                    <td class="col-sm-8 col-md-6"> <h4 style="font-weight:bold">Số Điện Thoại Khách Hàng:</h4> </td>
+                    <td class="col-sm-8 col-md-6">   <h5>@kh.SDT_KH</h5> </td>
+                </tr>
+                <tr style="height:40px">
+                    <td><h4 style="font-weight:bold">Phương Thức Thanh Toán :</h4> </td>
+                    <td class="col-sm-8 col-md-6">   <h5>@Html.DropDownList("PT_ThanhToan")</h5> </td>
+                </tr>
+
+                @*<tr style="height:40px">
+                <td><h4 style="font-weight:bold">Trạng Thái Đươn Hàng :</h4> </td>
+                <td class="col-sm-8 col-md-6">   <h5>@Html.DropDownList("TrangThai")</h5> </td>
+            </tr>*@
+                <tr style="height:40px">
+                    <td><h4 style="font-weight:bold">Ngày Oder:</h4> </td>
+                    <td> @DateTime.Now.ToShortDateString()</td>
+                </tr>
+                <tr style="height:40px">
+                    <td> <h4 style="font-weight:bold">Ngày Giao Hàng:</h4> </td>
+                    <td>
+                        <input type="date" name="NgayGiao" />
+                    </td>
+
+                </tr>
+                <tr style="height:40px">
+                    <td></td>
+                    <td style="font-weight:bold; ">
+                        <input class="oder" style="font-size:20px; border-radius:10px" type="submit" value="Order" />
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+
+
+
+
+
+

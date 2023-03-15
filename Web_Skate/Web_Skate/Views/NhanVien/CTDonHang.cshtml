@@ -1,0 +1,48 @@
+﻿@model Web_Skate.Models.CT_DonHang
+
+
+@{
+    ViewBag.Title = "CTDonHang";
+    Layout = "~/Views/Shared/_LayoutNhanVien.cshtml";
+}
+
+<h2>Chi Tiết Đơn Hàng</h2>
+
+<div>
+    <h4>Chi Tiết Đơn Hàng</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        
+            <dt>
+                Tên Sản Phẩm:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SanPham.TenSanPham)
+            </dd>
+            <dt>
+                Image:
+            </dt>
+            <dd>
+                <img src="@Url.Content("~/asset/Shop/" + Model.SanPham.Image)" width="120px" />
+            </dd>
+            <dt>
+                Số Lượng
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SoLuong)
+            </dd>
+
+            <dt>
+                Đơn Giá
+            </dt>
+
+            <dd>
+               
+                @String.Format("{0:0,0}", Model.DonGia) VNĐ
+            </dd>
+
+
+        
+        </dl>
+</div>

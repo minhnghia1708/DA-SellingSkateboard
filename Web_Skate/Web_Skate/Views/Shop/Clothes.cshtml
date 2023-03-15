@@ -1,0 +1,205 @@
+﻿
+@using Web_Skate.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<Web_Skate.Models.SanPham>
+
+@{
+    ViewBag.Title = "Clothes";
+   
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="~/Content/order.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="/css/Style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/fontawesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous">
+    <link href="~/Content/footer.css" rel="stylesheet" />
+    <link href="~/asset/font/themify-icons/themify-icons.css" rel="stylesheet" />
+    <style>
+        .MenuTrang li {
+            display: inline;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="small-container">
+        <div class="categories">
+            <div class="row">
+                <div class="col-3">
+                    <img src="~/asset/shop/skatebo.jpg">
+
+                </div>
+                <div class="col-3">
+                    <img src="~/asset/shop/skateboard1.jpg">
+
+                </div>
+                <div class="col-3">
+
+                    <img src="~/asset/shop/skateboard2.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="small-container">
+        <h2 id="tittde" class="title">Clothes</h2>
+        <div class="row">
+            @foreach (var deck in Model)
+            {
+                if (deck.ID_Loai == 2)
+                {
+                    <div class="col-4">
+                        <div class="thumbnail">
+                            <a href="@Url.Action("Details","Shop",new {id=deck.ID_SanPham})">
+                                <img src="~/asset/shop/@deck.Image" width="300" alt="@deck.TenSanPham" />
+                                <div>
+                                    <br />
+                                    <h4 style="text-align:center">@deck.TenSanPham</h4>
+                                    <p></p>
+                                </div>
+                                <div class="rating">
+                                    <p style="text-align:center">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </p>
+
+                                </div>
+                        </div>
+
+                    </div>
+                }
+
+            }
+            <p style="color:#000">
+                Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount;
+            </p>
+            <div class="MenuTrang">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+    <!--nhận xét khách hàng-->
+   
+    <!--end-->
+    <!--logo thương hiệu-->
+    <div class="brands">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-5">
+
+                    <img src="~/asset/img/logo1.jpg" />
+                </div>
+                <div class="col-5">
+
+                    <img src="~/asset/img/logo2.jpg" />
+                </div>
+                <div class="col-5">
+
+                    <img src="~/asset/img/logo7.jpg" />
+                </div>
+                <div class="col-5">
+
+                    <img src="~/asset/img/logo4.jpg" />
+                </div>
+                <div class="col-5">
+
+                    <img src="~/asset/img/logo6.jpg" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end-->
+    <div style="height:100%">
+        <footer class="footer-distributed">
+
+            <div class="footer-left">
+
+                <h3>Skate<span>Shop</span></h3>
+
+                <p class="footer-links">
+                    <a href="/Home" class="link-1">Home</a>
+
+                    <a href="/Home#introduce">Idle</a>
+
+                    <a href="#">Map</a>
+
+                    <a href="/Shop">Shop</a>
+
+                    <a href="#">Contact</a>
+                </p>
+
+                <p class="footer-company-name">SkateShop © 2022</p>
+            </div>
+
+            <div class="footer-center">
+
+                <div>
+                    <i class="fa fa-map-marker"></i>
+                    <p><span>222 Bùi Đình Túy</span> Quận Bình Thạnh, Tp. Hồ Chí Minh</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-phone"></i>
+                    <p>+84 942861921</p>
+                </div>
+
+                <div>
+                    <i class="fa fa-envelope"></i>
+                    <p><a href="mailto:tinh19dtha5@gmail.com">support@skateshop.com</a></p>
+                </div>
+
+            </div>
+
+            <div class="footer-right">
+
+                <p class="footer-company-about">
+                    <span>GIỚI THIỆU VỀ CỬA HÀNG</span>
+                    Ván trượt Skateboard, mang đến những giờ vui chơi thoải mái, chất liệu cao cấp, thiết kế đẹp mắt. Thỏa mãn đam mê cùng chiếc ván trượt sành điệu...
+                </p>
+
+                <div class="footer-icons">
+
+                    <a href="https://www.facebook.com/Idle-But-Not-Useless-112427526921580"><i class="fa ti-facebook"></i></a>
+                    <a href="#"><i class="fa ti-twitter"></i></a>
+                    <a href="#"><i class="fa ti-instagram"></i></a>
+                    <a href="#"><i class="fa ti-github"></i></a>
+
+                </div>
+
+            </div>
+
+        </footer>
+
+
+    </div>
+
+</body>
+
+</html>
+<script type="text/javascript">
+    function buyNow() {
+        question = confirm("Bạn Muốn Mua Sản Phẩm Này?");
+        if (question != false) {
+            alert('Cảm Ơn Đã Chọn Mua Sản Phẩm')
+        }
+    }
+</script>
+

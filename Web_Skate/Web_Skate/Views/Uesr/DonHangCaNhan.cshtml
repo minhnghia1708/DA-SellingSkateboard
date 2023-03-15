@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Web_Skate.Models.DonHang>
+
+@{
+    ViewBag.Title = "Danh sách Đơn Hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/order.css">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<header id="gtco-header" class="gtco-cover gtco-cover-md g-header" role="banner" style="background-image: url(/Content/Home/images/img_bg_1.jpg)" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+</header>
+<div class="container">
+    <br /><br /><br /><br />
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h1 style="text-align:center; margin-bottom: 20px;" >Danh Sách Đơn Đặt Hàng</h1>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover">
+                <thead style="text-align:center;">
+                    <tr>
+                        <th>
+                            Họ Tên Khách Hàng
+                        </th>
+                        <th>
+                            Số Điện Thoại
+                        </th>
+                        <th >
+                            Ghi Chú
+                        </th>
+                        <th>
+                            Phương Thức Thanh Toán
+                        </th>
+                        <th>
+                            Ngày Đặt
+                        </th>
+                        <th>
+                            Ngày Giao
+                        </th>
+                        <th>
+                            Trạng Thái Đơn Hàng
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.KhachHang.HoTen_KH)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SDT_NguoiNhan)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GhiChu)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhuongThucThanhToan.PhuongThuc)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NgayDat)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NgayGiao)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TrangThaiDonHang.TrangThaiDH)
+                            </td>
+                            <td>
+
+                                 @Html.ActionLink("Detail", "CTDonHang", new { id = item.ID_DonHang }) 
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

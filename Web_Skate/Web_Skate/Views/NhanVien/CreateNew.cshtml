@@ -1,0 +1,86 @@
+﻿@model Web_Skate.Models.SanPham
+
+@{
+    ViewBag.Title = "CreateNew";
+    Layout = "~/Views/Shared/_LayoutNhanVien.cshtml";
+}
+<style>
+    #createnew:hover{
+        background-color:lawngreen;
+    }
+</style>
+
+
+
+@using (Html.BeginForm("CreateNew","NhanVien",FormMethod.Post,new {@enctype="multipart/form-data"})) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>SanPham</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-group">
+    <p style="font-weight:bold">Tên Sản Phẩm </p>
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.TenSanPham, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.TenSanPham, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    <p style="font-weight:bold">Giá Của Sản Phẩm</p>
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Gia_SanPham, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Gia_SanPham, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    <p style="font-weight:bold">Image</p>
+    <div class="col-md-10">
+        <input type="file" name="fileupload" />
+        @ViewBag.Thongbao
+    </div>
+</div>
+
+<div class="form-group">
+    <p style="font-weight:bold">Chi Tiết Sản Phẩm</p>
+    <div class="col-md-10">
+        @*<textarea name="ChiTietSanPham">Chi Tiết Sản Phẩm</textarea>*@
+        @Html.EditorFor(model => model.ChiTietSanPham, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.ChiTietSanPham, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    <p style="font-weight:bold">Số Lượng</p>
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    <p style="font-weight:bold">Loại Sản Phẩm</p>
+    <div class="col-md-10">
+        @Html.DropDownList("ID_Loai")
+    </div>
+</div>
+
+<div class="form-group">
+    <p style="font-weight:bold">Thương Hiệu</p>
+    <div class="col-md-10">
+        @Html.DropDownList("ID_ThuongHieu")
+    </div>
+</div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" id="createnew" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to Product Management Page", "SanPham")
+</div>

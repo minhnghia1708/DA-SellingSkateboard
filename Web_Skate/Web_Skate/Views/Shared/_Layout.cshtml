@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+   
+    
+   
+    
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <title>IDLE BUT NOT USELESS</title>
+    
+    <link href="~/css/Style.css" rel="stylesheet" />
+    <link rel="icon" sizes="180x180" href="~/asset/favicon/android-chrome-192x192.png">
+    <link href="~/Content/Header.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/asset/font/themify-icons/themify-icons.css">
+    <link href="~/Content/footer.css" rel="stylesheet" />
+    >
+</head>
+<body>
+    @Html.Partial("Header")
+    
+    @RenderBody()
+    @*@Html.Partial("footer")*@
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

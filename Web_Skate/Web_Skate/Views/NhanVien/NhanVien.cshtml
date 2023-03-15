@@ -1,0 +1,80 @@
+﻿@model PagedList.PagedList<Web_Skate.Models.NhanVien>
+@using Web_Skate.Models;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "NhanVien";
+    Layout = "~/Views/Shared/_LayoutNhanVien.cshtml";
+}
+
+<h2>Danh Sách Nhân Viên</h2>
+
+<p>
+    @foreach (var item in Model)
+    {
+        if (item.ID_ChucVu == 1)
+        {
+            @Html.ActionLink("Create New", "CreateAccount", "Login")
+        }
+    }
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Họ Và Tên
+        </th>
+        <th>
+            Số Điện Thoại
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Account
+        </th>
+        <th>
+            PassWord
+        </th>
+        <th>
+            Quyền
+        </th>
+        <th>
+            Chức Vụ
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoTen_NV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDT_NV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email_NV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account_NV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password_NV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quyen_NV.Quyen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChucVu_NV.ChucVu)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID_NV }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID_NV }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID_NV })
+            </td>
+        </tr>
+    }
+
+</table>

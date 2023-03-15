@@ -1,0 +1,54 @@
+﻿@using Web_Skate.Models
+@{
+    ViewBag.Title = "Header";
+   
+}
+<style>
+    .searchss{
+        width:200px;
+    }
+</style>
+
+<div id="header">
+    <!-- begin nav -->
+    <ul id="nav">
+        <li><a href="/Home">Home</a></li>
+        <li><a href="/Home#introduce">Idle</a></li>
+        <li><a href="/Home#event-cation">Map</a></li>
+        <li>
+            <a href="/Shop">Shop <i class="nav-arrow-down ti-angle-down"></i></a>
+            <ul class="subnav">
+                <li><a href="/Shop#titlle">Skate Board</a></li>
+                <li><a href="/Shop/Clothes">Clothes</a></li>
+
+
+
+            </ul>
+        </li>
+        <li>
+            <a href="#">Thông Tin <i class="nav-arrow-down ti-angle-down"></i></a>
+            <ul class="subnav">
+                <li><a href="/Uesr/CaNhan">Khách Hàng</a></li>
+                <li><a href="/Uesr/DonHangCaNhan">Đơn Hàng</a></li>
+
+
+
+            </ul>
+        </li>
+
+    </ul>
+    
+    <a class="login" onclick="location.href='/Uesr/Login'">LOGIN </a>
+    <div class="cart"><a href="/Cart/Cart" class="cart-icon ti-shopping-cart">  (@ViewBag.TongSoLuong)</a></div>
+
+    @*<div class="search" style="margin-top:10px;" >
+        
+            <input type="text" name="searchkey" class="form-control" />
+            <input type="submit" name="submit" value="Search" class="form-control" />
+        
+    </div>*@
+  
+    <!-- begin search  -->
+</div>
+
+

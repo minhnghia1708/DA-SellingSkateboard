@@ -1,0 +1,105 @@
+﻿@using Web_Skate.Models
+@model List<Cart>
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<header style="background-color:#fff;margin-top:70px;">
+    <a></a>
+</header>
+
+<h2 style="text-align:center;margin-bottom:20px;color:darkred">Thông Tin Giỏ Hàng</h2>
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Total</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+
+                            <td class="col-sm-8 col-md-6">
+                                <div class="media">
+                                    <a class="thumbnail pull-left" href="#"> <img class="media-object" src="~/asset/shop/@item.Image" style="width: 72px; height: 72px;"> </a>
+
+
+                                    <div class="media-body">
+                                        <h4 class="media-heading">@item.TenSanPham</h4>
+                                        <h5 class="media-heading"> <a href="@Url.Action("Details", "Shop", new { id = item.ID_SanPham })">Details</a></h5>
+
+                                    </div>
+                                </div>
+                            </td>
+                            @using (Html.BeginForm("UpdateCart", "Cart", new { @IDSP = item.ID_SanPham }))
+                            {
+                                <td class="col-sm-1 col-md-1" style="text-align: center">
+                                    <input type="number" name="quantity" min="1" max="99" value="@item.SoLuong">
+                                </td>
+                                <td class="col-sm-1 col-md-1 text-center"><strong>@String.Format("{0:0,0}", item.Gia_SanPham)</strong></td>
+                                <td class="col-sm-1 col-md-1 text-center"><strong>@String.Format("{0:0,0}", item.TongTien)</strong></td>
+                                <td class="col-sm-1 col-md-1">
+                                    <button type="button" class="btn btn-danger">
+                                        @*<span class="glyphicon glyphicon-remove"></span> Remove*@
+                                        <a class="glyphicon glyphicon-remove" style="color:#fff" href="@Url.Action("DeleteCart", "Cart", new { @IDSP = item.ID_SanPham })">
+                                            Delete
+                                        </a>
+                                    </button>
+                                </td>
+                            }
+                            
+                        </tr>
+                    }
+
+
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>   </td>
+                            <td><h5>Total Amount</h5></td>
+                            <td class="text-right" colspan="4"><h5><strong> @ViewBag.TongSoLuong</strong></h5></td>
+                        </tr>
+
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>   </td>
+                            <td><h3>Total</h3></td>
+                            <td class="text-right" colspan="5"><h3><strong> @String.Format("{0:0,0}", ViewBag.TongTien) VNĐ</strong></h3></td>
+                        </tr>
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>
+                                <button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> <a href=@Url.Action("Index", "Shop") style="color:#000;">Continue Shopping</a>
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-success">
+                                    <a href="@Url.Action("Oder", "Cart")" style="color:#fff;">Order</a> <span class="glyphicon glyphicon-play"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

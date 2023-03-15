@@ -1,0 +1,48 @@
+﻿<style type="text/css">
+    #DatMua a{
+        clear:both;     background-color:red;
+        color:white;    width:120px;    
+        display:block;         text-align:center;
+        padding-top:10px;       text-decoration:none;   font-weight:bold;
+    }
+    h2{
+        text-align:center;
+        font-size:40px;
+        color:darkred;
+        margin-bottom: 10px;
+    }
+</style>
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header style="background-color:#fff; margin-top:100px">
+    <a></a>
+</header>
+
+<div class="offer" style="background: radial-gradient( circle at top right, #16222A, #3A6073 ); ">
+    <div class="samll-container">
+        <div class="row">
+            
+            <div class="col-2" style="width:50%;float:left;border-left:dotted 1px;border-color:azure">
+                <img src="~/asset/shop/@Model.Image" width="70%" />
+            </div>
+            <div class="col-2">
+                <h1 style="color:orangered"> Details </h1>
+                <h4 style="color:#fff;font-size:40px">Tên Sản Phẩm: @Model.TenSanPham</h4>
+                <p style="text-align:justify;"><span style="font-weight:bold;color:#fff;font-size:15px"></span><p style="color:#fff">@Model.ChiTietSanPham</p></p>
+                <p style="font-weight: bold; color: #fff; font-size: 15px">Giá Bán: <span style="font-weight: bold; color:#fff; font-size: 15px">@Model.Gia_SanPham VNĐ</span></p>
+                <div id="DatMua">
+                    <a style="background-color: orangered; border-radius: 30px; padding: 10px;" href="@Url.Action("AddCart","Cart",new {@IDSP=@Model.ID_SanPham,@strURL=Request.Url.ToString()})" class="list-group-item">
+                        Buy Now &#10132;
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "CreateAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .hoten {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        width: 100%;
+        resize: vertical;
+        padding: 15px;
+        border-radius: 15px;
+        border: 0;
+        box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .Create_context {
+        float: left;
+        width: 100%;
+        border-radius: 15px;
+        border: 0;
+        box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+        padding: 15px;
+        background-color: lightgrey;
+    }
+
+        .Create_context:hover {
+            cursor: pointer;
+            opacity: 0.9;
+            background-color: lightgreen;
+            color: #000;
+        }
+
+    .create_form {
+        width: 100%;
+        max-width: 400px;
+        margin: 20px auto;
+        background-color: #ffffff;
+        padding: 15px;
+        /*border: 2px dotted #cccccc;*/
+        border-radius: 10px;
+    }
+   
+</style>
+
+
+<header style=" background-color: #fff; min-height: 70px; padding: 15px;">
+</header>
+<body>
+
+    <table class="create_form" align="center">
+        <h2 style="height:40px;text-align:center">Create Account</h2>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <tr style="height: 40px;text-align:center; ">
+                <td>Họ Tên Khách Hàng:</td>
+                <td>
+                    @Html.TextBox("HoTen_KH", null, new { @class = "hoten" })
+                    @ViewData["Lỗi1"]
+                </td>
+
+            </tr>
+            <tr style="height: 40px;">
+                <td>Tên Đăng Nhập:</td>
+                <td>
+                    @Html.TextBox("Account_KH", null, new { @class = "hoten" })
+                    @ViewData["Lỗi2"]
+                    @ViewBag.Warning
+                </td>
+
+            </tr>
+            <tr style="height: 40px; ">
+                <td>PassWord:</td>
+                <td>
+                    @Html.Password("Password_KH", null, new { @class = "hoten" })
+                    @ViewData["Lỗi3"]
+                </td>
+
+            </tr>
+            <tr style="height: 40px; ">
+                <td>Địa Chỉ:</td>
+                <td>
+                    @Html.TextBox("DiaChi_KH", null, new { @class = "hoten" })
+                    @ViewData["Lỗi4"]
+                </td>
+
+            </tr>
+            <tr style="height: 40px; ">
+                <td>Số Điện Thoại:</td>
+                <td>
+                    @Html.TextBox("SDT_KH", null, new { @class = "hoten" })
+                    @ViewData["Lỗi5"]
+                </td>
+
+            </tr>
+            <tr style="height: 40px;">
+                <td></td>
+                <td>
+                    <input class="Create_context" type="submit" value="Create" />
+                </td>
+
+            </tr>
+        }
+    </table>
+</body>
+
+
+
+

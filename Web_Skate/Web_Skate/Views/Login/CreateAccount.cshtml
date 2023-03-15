@@ -1,0 +1,77 @@
+﻿@model Web_Skate.Models.NhanVien
+
+@{
+    ViewBag.Title = "CreateAccount";
+    Layout = "~/Views/Shared/_LayoutNhanVien.cshtml";
+}
+
+<h2>Create Account</h2>
+
+
+<body>
+
+    <table class="create_form" align="center">
+        <h2 style="height:40px;text-align:center">Create Account</h2>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <tr style="height: 40px;text-align:center; ">
+                <td>Họ Tên Khách Hàng:</td>
+                <td>
+                    @Html.TextBox("HoTen_NV", null, new { @class = "hoten" })
+                    @ViewData["Lỗi1"]
+                </td>
+
+            </tr>
+            <tr style="height: 40px;">
+                <td>Tên Đăng Nhập:</td>
+                <td>
+                    @Html.TextBox("Account_NV", null, new { @class = "hoten" })
+                    @ViewData["Lỗi2"]
+                    @ViewBag.Warning
+                </td>
+
+            </tr>
+            <tr style="height: 40px; ">
+                <td>PassWord:</td>
+                <td>
+                    @Html.TextBox("Password_NV", null, new { @class = "hoten" })
+                    @ViewData["Lỗi3"]
+                </td>
+
+            </tr>
+            <tr style="height: 40px; ">
+                <td>Địa Chỉ:</td>
+                <td>
+                    @Html.TextBox("Email_NV", null, new { @class = "hoten" })
+                    @ViewData["Lỗi4"]
+                </td>
+
+            </tr>
+            <tr style="height: 40px; ">
+                <td>Số Điện Thoại:</td>
+                <td>
+                    @Html.TextBox("SDT_NV", null, new { @class = "hoten" })
+                    @ViewData["Lỗi5"]
+                </td>
+
+            </tr>
+            <tr style="height: 40px; ">
+                <td>Quyền</td>
+                <td> @Html.DropDownList("ID_Quyen")</td>
+            </tr>
+            <tr style="height: 40px; ">
+                <td>Chức Vụ</td>
+                <td> @Html.DropDownList("ID_ChucVu")</td>
+            </tr>
+
+            <tr style="height: 40px;">
+                <td></td>
+                <td>
+                    <input class="Create_context" type="submit" value="Create" />
+                </td>
+
+            </tr>
+        }
+    </table>
+</body>
